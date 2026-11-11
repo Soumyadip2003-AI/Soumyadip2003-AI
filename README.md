@@ -12,7 +12,7 @@
 
 <p>
 <a href="https://github.com/Soumyadip2003-AI/Nova"><img src="cards/repo-nova.svg" width="49.5%" alt="Nova: autonomous GPT-5.1 agent that turns a plain description into a working Next.js app."></a>
-<a href="https://github.com/Soumyadip2003-AI/reposcribe"><img src="cards/repo-reposcribe.svg" width="49.5%" alt="RepoScribe: ask questions about any repo, get a scored review, and open reviewed fix pull requests."></a>
+<a href="https://reposcribe.dev"><img src="cards/repo-reposcribe.svg" width="49.5%" alt="RepoScribe: ask questions about any repo, get a scored review, and open reviewed fix pull requests."></a>
 <a href="https://github.com/Soumyadip2003-AI/stroke-prediction-system-ai-ml"><img src="cards/repo-stroke-prediction-system-ai-ml.svg" width="49.5%" alt="NeuroPredict: calibrated stroke-risk model behind an interactive React front end."></a>
 <a href="https://github.com/Soumyadip2003-AI/verus-deepfake-detector"><img src="cards/repo-verus-deepfake-detector.svg" width="49.5%" alt="Verus: face-focused deepfake detection with GenD CLIP and an evaluation workflow."></a>
 </p>

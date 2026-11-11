@@ -57,6 +57,11 @@ FEATURED = [  # (repo, display name, one line or None for the GitHub description
     ("verus-deepfake-detector", "Verus", "Face-focused deepfake detection with GenD CLIP and an evaluation workflow."),
 ]
 
+# Featured repos that are private: the public data has no row for them, so their card uses this.
+PRIVATE_FEATURED = {
+    "reposcribe": {"primaryLanguage": {"name": "TypeScript"}, "homepageUrl": "https://reposcribe.dev", "description": ""},
+}
+
 # Crop of the photo, as fractions: left, top, width. Height follows the portrait box.
 PORTRAIT_CROP = (.22, .03, .66)
 
@@ -423,13 +428,14 @@ def repo_cards(data):
     repos = {r["name"]: r for r in data["repositories"]["nodes"]}
     accents = [BLUE, RED, YELLOW, BLUE]
     for i, (key, display, line) in enumerate(FEATURED):
-        r = repos[key]
+        # A private repo is missing from the public data; its card falls back to PRIVATE_FEATURED.
+        r = repos.get(key) or PRIVATE_FEATURED[key]
         about = line or r["description"] or ""
         W, H = 434, 236
         c = Card(f"repo-{key.lower()}", W, H, f"{display}: {about}", START["repos"] + (i // 2) * .25 + (i % 2) * .1)
         b = c.body
         lang = (r.get("primaryLanguage") or {}).get("name", "Code").upper()
-        updated = f"UPDATED {dt.date.fromisoformat(r['pushedAt'][:10]):%b %Y}".upper()
+        updated = f"UPDATED {dt.date.fromisoformat(r['pushedAt'][:10]):%b %Y}".upper() if r.get("pushedAt") else "LIVE"
         b.append(f'<g{c.anim("up", 0)}><rect x="26" y="34" width="10" height="10" rx="2" fill="{accents[i]}"/>'
                  f'{eyebrow(c, 46, 44, lang, INK2, 12)}{eyebrow(c, W - 26, 44, updated, MUTED, 12, anchor="end")}</g>')
         b.append(f'<g{c.anim("up", .08)}>{c.t(24, 104, display, SERIF, 50, INK, ls=-1)}</g>')
